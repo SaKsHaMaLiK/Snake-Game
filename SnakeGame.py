@@ -1,4 +1,5 @@
-import mathimport random
+import math
+import random
 import pygame
 import tkinter as tkinter
 from tkinter import messagebox
@@ -34,7 +35,7 @@ class cube(object)
 
 class snake(object):
     body = []
-    turns = []
+    turns = {}
     def _init_(self, color, pos):
         self.color = color
         self.head = cube(pos)
@@ -85,7 +86,12 @@ class snake(object):
                         else: c.move(c.dirnx,c.dirny)
 
     def reset(self,pos):
-        pass
+        self.head = cube(pos)
+        self.body = []
+        self.body.append(self.head)
+        self.turns = {}
+        self.dirnx = 0
+        self.dirny = 1
 
     def addCube(self):
         tail = self.body[-1]
@@ -146,31 +152,14 @@ def randomSnack(rows, item):
         return (x,y)
 
 def message_box(subject, content):
-    pass
-
-def main():
-    global width, rows, s, snack
-    width = 500
-    height = 500
-    rows = 20
-    win = pygame.display.set_mode((width, height))
-    s = snake((255,0,0), (10,10))
-    snack = cube(randomSnack(rows, s), color=(0,255,0))
-    flag =True
-
-    clock = pygame.time.Clock()
-
-    while flag:
-        pygame.time.delay(50)
-        clock.tick(10)
-        s.move()
-        if s.body[0].pos == snacl.pos:
-            s.addCube()
-            snack = cube(randomSnack(rows, s), color=(0,255,0))
-        redrawWindow(win)
-
-
-    pass
+    root = tk.Tk()
+    root.attributes("-topmost", True)
+    root.withdraw()
+    messagebox.showinfo(subject, content)
+    try:
+        root.destroy()
+    expect:
+        pass
 
 
 main()
